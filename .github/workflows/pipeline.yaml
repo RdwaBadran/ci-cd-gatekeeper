@@ -22,7 +22,8 @@ jobs:
     name: Train Model (GPU Job)
     runs-on: ubuntu-latest
     needs: linter
-    if: |
+    if: >
+      always() &&
       needs.linter.result == 'success' &&
       github.ref == 'refs/heads/main' &&
       contains(github.event.head_commit.message, '[run-train]')
